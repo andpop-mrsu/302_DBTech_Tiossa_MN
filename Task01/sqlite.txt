@@ -1,0 +1,15 @@
+3.45.1 
+ 
+Режимы вывода данных: 
+ascii 
+column 
+csv 
+html 
+insert 
+json 
+line 
+list 
+markdown 
+quote 
+table 
+tabs 
