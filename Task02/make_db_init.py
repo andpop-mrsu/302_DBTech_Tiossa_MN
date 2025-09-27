@@ -12,16 +12,16 @@ users_file = os.path.join(dataset_dir, 'users.txt')
 print("Starting SQL script generation...")
 
 with open(output_sql_file, 'w', encoding='utf-8') as sql_file:
-    # Начинаем транзакцию
+    
     sql_file.write("BEGIN TRANSACTION;\n\n")
     
-    # Удаляем таблицы
+    
     sql_file.write("DROP TABLE IF EXISTS movies;\n")
     sql_file.write("DROP TABLE IF EXISTS ratings;\n")
     sql_file.write("DROP TABLE IF EXISTS tags;\n")
     sql_file.write("DROP TABLE IF EXISTS users;\n\n")
 
-    # Создаем таблицы
+    
     sql_file.write("""
 CREATE TABLE movies (
     id INTEGER PRIMARY KEY,
@@ -57,7 +57,7 @@ CREATE TABLE users (
 
 \n""")
 
-    # Данные для movies
+    
     print("Processing movies.csv...")
     sql_file.write("-- Inserting movies\n")
     with open(movies_file, 'r', encoding='utf-8') as csvfile:
@@ -88,7 +88,7 @@ CREATE TABLE users (
             sql_file.write(sql_line)
     sql_file.write("\n")
 
-    # Данные для ratings
+    
     print("Processing ratings.csv...")
     sql_file.write("-- Inserting ratings\n")
     with open(ratings_file, 'r', encoding='utf-8') as csvfile:
@@ -98,7 +98,7 @@ CREATE TABLE users (
             sql_file.write(sql_line)
     sql_file.write("\n")
 
-    # Данные для tags
+    
     print("Processing tags.csv...")
     sql_file.write("-- Inserting tags\n")
     with open(tags_file, 'r', encoding='utf-8') as csvfile:
@@ -109,7 +109,7 @@ CREATE TABLE users (
             sql_file.write(sql_line)
     sql_file.write("\n")
 
-    # Данные для users
+    
     print("Processing users.txt...")
     sql_file.write("-- Inserting users\n")
     
@@ -133,7 +133,7 @@ CREATE TABLE users (
             sql_line = f"INSERT INTO users (id, name, email, gender, register_date, occupation) VALUES ({user_id}, '{name}', '{email}', '{gender}', '{register_date}', '{occupation}');\n"
             sql_file.write(sql_line)
 
-    # Завершаем транзакцию
+   
     sql_file.write("\nCOMMIT;\n")
 
 print(f"SQL script successfully generated: {output_sql_file}")
